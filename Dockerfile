@@ -1,7 +1,7 @@
 # start from shiny-verse to include both the shiny and tidyverse packages,
 # saving us time assuming that the app to be deployed doesn't have dependencies
 # locked to different versions.
-FROM rocker/shiny-verse:4.3.2
+FROM rocker/shiny-verse:4.4.2
 
 # install rsconnect and renv packages, as well as prerequisite libraries
 RUN apt-get update && apt-get install -y \
