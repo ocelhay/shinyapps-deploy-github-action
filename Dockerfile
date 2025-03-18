@@ -7,7 +7,8 @@ FROM rocker/shiny-verse:4.4.2
 RUN apt-get update && apt-get install -y \
   libssl-dev \
   libcurl4-openssl-dev \
-  libsodium-dev
+  libsodium-dev \
+  libudunits2-dev
 RUN install2.r rsconnect renv
 
 # copy deploy script to root of the workspace
