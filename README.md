@@ -2,18 +2,21 @@
 
 GitHub action to automate deployment of shiny applications on <https://shinyapps.io>.
 
+https://github.com/VincentGuyader/shiny2docker
+shiny2docker is an R package designed to streamline the process of containerizing Shiny applications using Docker. By automating the generation of essential Docker files and managing R dependencies with renv, shiny2docker simplifies the deployment of Shiny apps, ensuring reproducibility and consistency across different environments.
+
 ## Example
 
 ```yaml
 name: Deploy to shinyapps.io
 on:
 
-  # run on any push 
+  # run on any push
   push:
 
   # run on request (via button in actions menu)
   workflow_dispatch:
-      
+
 jobs:
   deploy:
     name: Deploy to shinyapps
