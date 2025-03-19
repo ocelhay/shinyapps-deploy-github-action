@@ -1,14 +1,8 @@
-# start from shiny-verse to include both the shiny and tidyverse packages,
-# saving us time assuming that the app to be deployed doesn't have dependencies
-# locked to different versions.
-FROM rocker/shiny-verse:4.4.2
+FROM rocker/geospatial:4.4.2
 
 # install rsconnect and renv packages, as well as prerequisite libraries
 RUN apt-get update && apt-get install -y \
-  libssl-dev \
-  libcurl4-openssl-dev \
-  libsodium-dev \
-  libudunits2-dev
+  libssl-dev make libcurl4-openssl-dev libxml2-dev cmake libicu-dev libx11-dev git libsodium-dev libfontconfig1-dev libfreetype6-dev libfribidi-dev libharfbuzz-dev libjpeg-dev libpng-dev libtiff-dev pandoc zlib1g-dev libglpk-dev
 RUN install2.r rsconnect renv
 
 # copy deploy script to root of the workspace
