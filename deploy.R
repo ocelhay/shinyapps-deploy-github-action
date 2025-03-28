@@ -57,6 +57,13 @@ cat("checking account info...")
 rsconnect::setAccountInfo(accountName, accountToken, accountSecret)
 cat(" [OK]\n")
 
+# set env variables
+Sys.setenv(AIRTABLE_TOKEN = optional("INPUT_AIRTABLE_TOKEN"))
+Sys.setenv(S3_BUCKET = optional("INPUT_S3_BUCKET"))
+Sys.setenv(AWS_ACCESS_KEY_ID = optional("INPUT_AWS_ACCESS_KEY_ID"))
+Sys.setenv(AWS_SECRET_ACCESS_KEY = optional("INPUT_AWS_SECRET_ACCESS_KEY"))
+
+
 # deploy application
 rsconnect::deployApp(
   appDir = appDir,
