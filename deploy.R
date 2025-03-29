@@ -57,11 +57,19 @@ cat("checking account info...")
 rsconnect::setAccountInfo(accountName, accountToken, accountSecret)
 cat(" [OK]\n")
 
-# set env variables
-Sys.setenv(AIRTABLE_TOKEN = required("INPUT_AIRTABLE_TOKEN"))
-Sys.setenv(S3_BUCKET = required("INPUT_S3_BUCKET"))
-Sys.setenv(AWS_ACCESS_KEY_ID = required("INPUT_AWS_ACCESS_KEY_ID"))
-Sys.setenv(AWS_SECRET_ACCESS_KEY = required("INPUT_AWS_SECRET_ACCESS_KEY"))
+
+renviron_content <- paste0(
+  "AIRTABLE_TOKEN=", required("INPUT_AIRTABLE_TOKEN"), "\n",
+  "S3_BUCKET=", required("INPUT_S3_BUCKET")), "\n"
+  "AWS_ACCESS_KEY_ID=", required("INPUT_AWS_ACCESS_KEY_ID")), "\n"
+  "AWS_SECRET_ACCESS_KEY=", required("INPUT_AWS_SECRET_ACCESS_KEY")), "\n"
+)
+
+# Define the path for the .Renviron file
+renviron_path <- file.path(appDir, ".Renviron")
+
+# Write the content to the .Renviron file
+writeLines(renviron_content, renviron_path)
 
 
 # deploy application
@@ -71,12 +79,6 @@ rsconnect::deployApp(
   appFileManifest = appFileManifest,
   appName = appName,
   appTitle = appTitle,
-  envVars = c(
-    "AIRTABLE_TOKEN",
-    "S3_BUCKET",
-    "AWS_ACCESS_KEY_ID",
-    "AWS_SECRET_ACCESS_KEY"
-  ),
   account = accountName,
   forceUpdate = TRUE
 )
