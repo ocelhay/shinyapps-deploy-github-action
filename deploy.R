@@ -58,10 +58,10 @@ rsconnect::setAccountInfo(accountName, accountToken, accountSecret)
 cat(" [OK]\n")
 
 # set env variables
-Sys.setenv(AIRTABLE_TOKEN = optional("INPUT_AIRTABLE_TOKEN"))
-Sys.setenv(S3_BUCKET = optional("INPUT_S3_BUCKET"))
-Sys.setenv(AWS_ACCESS_KEY_ID = optional("INPUT_AWS_ACCESS_KEY_ID"))
-Sys.setenv(AWS_SECRET_ACCESS_KEY = optional("INPUT_AWS_SECRET_ACCESS_KEY"))
+Sys.setenv(AIRTABLE_TOKEN = required("INPUT_AIRTABLE_TOKEN"))
+Sys.setenv(S3_BUCKET = required("INPUT_S3_BUCKET"))
+Sys.setenv(AWS_ACCESS_KEY_ID = required("INPUT_AWS_ACCESS_KEY_ID"))
+Sys.setenv(AWS_SECRET_ACCESS_KEY = required("INPUT_AWS_SECRET_ACCESS_KEY"))
 
 
 # deploy application
@@ -71,6 +71,12 @@ rsconnect::deployApp(
   appFileManifest = appFileManifest,
   appName = appName,
   appTitle = appTitle,
+  envVars = c(
+    "AIRTABLE_TOKEN",
+    "S3_BUCKET",
+    "AWS_ACCESS_KEY_ID",
+    "AWS_SECRET_ACCESS_KEY"
+  ),
   account = accountName,
   forceUpdate = TRUE
 )
