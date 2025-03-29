@@ -60,9 +60,9 @@ cat(" [OK]\n")
 
 renviron_content <- paste0(
   "AIRTABLE_TOKEN=", required("INPUT_AIRTABLE_TOKEN"), "\n",
-  "S3_BUCKET=", required("INPUT_S3_BUCKET")), "\n"
-  "AWS_ACCESS_KEY_ID=", required("INPUT_AWS_ACCESS_KEY_ID")), "\n"
-  "AWS_SECRET_ACCESS_KEY=", required("INPUT_AWS_SECRET_ACCESS_KEY")), "\n"
+  "S3_BUCKET=", required("INPUT_S3_BUCKET"), "\n",
+  "AWS_ACCESS_KEY_ID=", required("INPUT_AWS_ACCESS_KEY_ID"), "\n",
+  "AWS_SECRET_ACCESS_KEY=", required("INPUT_AWS_SECRET_ACCESS_KEY"), "\n"
 )
 
 # Define the path for the .Renviron file
