@@ -1,8 +1,7 @@
 FROM rocker/geospatial:4.4.2
 
 # install rsconnect and renv packages, as well as prerequisite libraries
-RUN apt-get update && apt-get install -y \
-  libssl-dev make libcurl4-openssl-dev libxml2-dev cmake libicu-dev libx11-dev git libsodium-dev libfontconfig1-dev libfreetype6-dev libfribidi-dev libharfbuzz-dev libjpeg-dev libpng-dev libtiff-dev pandoc zlib1g-dev libglpk-dev
+RUN apt-get update -y && apt-get install -y  make libcurl4-openssl-dev libssl-dev libxml2-dev cmake libicu-dev libx11-dev zlib1g-dev libglpk-dev pandoc libsodium-dev && rm -rf /var/lib/apt/lists/*
 RUN install2.r rsconnect renv
 
 # copy deploy script to root of the workspace
