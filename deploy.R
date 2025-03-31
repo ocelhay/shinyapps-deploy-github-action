@@ -57,6 +57,20 @@ cat("checking account info...")
 rsconnect::setAccountInfo(accountName, accountToken, accountSecret)
 cat(" [OK]\n")
 
+# create .Renviron
+renviron_content <- paste0(
+  "S3_BUCKET=", required("INPUT_S3_BUCKET"), "\n",
+  "AWS_ACCESS_KEY_ID=", required("INPUT_AWS_ACCESS_KEY_ID"), "\n",
+  "AWS_SECRET_ACCESS_KEY=", required("INPUT_AWS_SECRET_ACCESS_KEY"), "\n",
+  "CREDS_PWD", required("CREDS_PWD"), "\n"
+)
+
+# Define the path for the .Renviron file
+renviron_path <- file.path(appDir, ".Renviron")
+
+# Write the content to the .Renviron file
+writeLines(renviron_content, renviron_path)
+
 # deploy application
 rsconnect::deployApp(
   appDir = appDir,
